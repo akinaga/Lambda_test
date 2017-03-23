@@ -17,7 +17,10 @@ seq = str(args[1])
 uuid = str(args[2])
 
 response = client.invoke(
-    FunctionName='Lambda_test',
+    # FunctionName='Lambda_test',
+    FunctionName='Lambda_test_002',
+    # FunctionName='Lambda_test_003',
+    # FunctionName='Lambda_test_004',
     InvocationType='RequestResponse',
     Payload=json.dumps({'inittime': inittime, 'seq': seq, 'uuid': uuid})
 )

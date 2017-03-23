@@ -25,10 +25,13 @@ while True:
             sys.stderr.write('\r\033[K' + str(dat))
             sys.stderr.flush()
             # print dat
-            cur.execute("insert into lambda_test values ('%s',%s,%s,%s,%s);" % (
-                dat.get('uuid',''), dat.get('seq', 0), dat.get('inittime',0), dat.get('opentime',0), dat.get('difftime',0)))
+            try:
+                cur.execute("insert into lambda_test values ('%s',%s,%s,%s,%s);" % (
+                    dat.get('uuid',''), dat.get('seq', 0), dat.get('inittime',0), dat.get('opentime',0), dat.get('difftime',0)))
+                message.delete()
+            except:
+                pass
             # cur.fetchall()
-            message.delete()
     else:
         # メッセージがなくなったらbreak
         break

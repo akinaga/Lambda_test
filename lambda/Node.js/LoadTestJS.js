@@ -3,7 +3,7 @@ var aws = require('aws-sdk');
 var sqs = new aws.SQS({region: 'ap-northeast-1'});
 
 //sqsのURL
-var url = "";
+var url = "https://sqs.ap-northeast-1.amazonaws.com/616910136970/Lambda_test";
 
 //メイン処理
 exports.handler = function (event, context) {
@@ -30,3 +30,4 @@ exports.handler = function (event, context) {
             context.succeed();
         }
     });
+};
