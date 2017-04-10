@@ -1,13 +1,14 @@
 #!/bin/bash -f
 
 uuid=$(uuidgen)
+mkdir result/$uuid
+echo "$1 -> $uuid"
 
 echo ---- Start Lambda Testing---
 for i in {1..10000}
 do
 	#echo "Target: $i is processing"
-    python collector.py $i $uuid > /dev/null &
-    sleep 60
+    python collector.py $i $uuid $1 > result/$uuid/$i &
 	while :
 	do
 	    v=$(ps ax | grep collector.py | grep -v grep | wc -l)
@@ -15,7 +16,7 @@ do
 		if [ $(ps ax | grep collector.py | grep -v grep | wc -l) -le 100 ]; then
 			break
         else
-            sleep 0.5
+            sleep 0.1
 		fi
 	done
 done
